@@ -1,0 +1,21 @@
+sudo apt install python3-venv python3-pip git -y
+mkdir linux-monitor-gcp
+
+gcloud iam service-accounts list
+gcloud config get-value project
+gcloud config set project main-dashboard-personal
+gcloud login
+gcloud services enable \
+    compute.googleapis.com \
+    dataflow.googleapis.com \
+    pubsub.googleapis.com \
+    bigquery.googleapis.com \
+    storage.googleapis.com
+
+
+git init
+python3 -m venv .venv
+
+cd linux-monitor-gcp
+source .venv/bin/activate
+

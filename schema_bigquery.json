@@ -1,0 +1,16 @@
+[
+  { "name": "timestamp", "type": "TIMESTAMP", "mode": "REQUIRED" },
+  { "name": "host_name", "type": "STRING", "mode": "NULLABLE" },
+  { "name": "cpu_model", "type": "STRING", "mode": "NULLABLE" },
+  { "name": "cpu_usage_total", "type": "FLOAT", "mode": "NULLABLE" },
+  { "name": "ram_usage_mb", "type": "FLOAT", "mode": "NULLABLE" },
+  { "name": "ram_total_mb", "type": "FLOAT", "mode": "NULLABLE" },
+  { "name": "gpu_model", "type": "STRING", "mode": "NULLABLE" },
+  { "name": "gpu_usage", "type": "FLOAT", "mode": "NULLABLE" },
+  { "name": "temperature", "type": "FLOAT", "mode": "NULLABLE" },
+  { "name": "top_processes", "type": "JSON", "mode": "NULLABLE" },
+  { "name": "message_id", "type": "STRING", "mode": "NULLABLE" },
+  { "name": "publish_time", "type": "TIMESTAMP", "mode": "NULLABLE" },
+  { "name": "subscription_name", "type": "STRING", "mode": "NULLABLE" },
+  { "name": "attributes", "type": "STRING", "mode": "NULLABLE" }
+]

@@ -1,0 +1,20 @@
+[Unit]
+Description=GCP Linux Monitor Agent
+After=network.target
+RequiresMountsFor=/media/gmo996/Archivos
+
+[Service]
+Type=simple
+User=******
+WorkingDirectory=/media/user/Archivos/GCP/linux-monitor-gcp
+ExecStart=/media/user/Archivos/GCP/linux-monitor-gcp/.venv/bin/python /media/user/Archivos/GCP/linux-monitor-gcp/main.py
+
+# Si falla (por ej. sin internet), reintenta cada 20 segundos
+Restart=on-failure
+RestartSec=20
+
+# Esto hace que los print() salgan directo al log sin esperar
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

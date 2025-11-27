@@ -1,0 +1,16 @@
+{
+ "type": "record",
+ "name": "LinuxMetrics",
+ "fields": [
+   { "name": "timestamp", "type": "string" },
+   { "name": "host_name", "type": "string", "default": "" },
+   { "name": "cpu_model", "type": "string", "default": "" },
+   { "name": "cpu_usage_total", "type": "double" },
+   { "name": "ram_usage_mb", "type": "double" },
+   { "name": "ram_total_mb", "type": "double" },
+   { "name": "gpu_model", "type": "string", "default": "" },
+   { "name": "gpu_usage", "type": "double" },
+   { "name": "temperature", "type": ["null", "double"], "default": null },
+   { "name": "top_processes", "type": "string", "default": "[]" }
+ ]
+}
