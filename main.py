@@ -8,14 +8,14 @@ from datetime import datetime, timezone
 from google.cloud import pubsub_v1
 
 # --- CONFIGURACIÓN ---
-# Reemplaza esto con tu ID de proyecto real (lo puedes ver en la terminal con: gcloud config get-value project)
+# Reemplaza esto con tu ID de proyecto
 PROJECT_ID = "main-dashboard-personal" 
 TOPIC_ID = "linux-metrics-topic"
 
-# Ruta a tu llave de seguridad (la que pusiste en el gitignore)
-KEY_PATH = "gcp-keys/monitor-key.json" # Asegúrate que el nombre del archivo coincida
+# Ruta a tu llave de seguridad
+KEY_PATH = "gcp-keys/monitor-key.json"
 
-# Autenticación: Le decimos a Python dónde está la llave
+# Autenticación
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = KEY_PATH
 
 def get_gpu_info():
@@ -40,7 +40,7 @@ def get_top_processes(limit=5):
         except (psutil.NoSuchProcess, psutil.AccessDenied):
             pass
     
-    # Ordenar por uso de memoria (mayor a menor) y tomar los top N
+    # Ordenar por uso de memoria
     top_procs = sorted(procs, key=lambda p: p['memory_percent'] or 0, reverse=True)[:limit]
     return top_procs
 
@@ -52,14 +52,14 @@ def collect_metrics():
     data = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "host_name": socket.gethostname(),
-        "cpu_model": "Generic x86_64", # Python nativo no da el modelo fácil sin librerías extra
+        "cpu_model": "Generic x86_64",
         "cpu_usage_total": psutil.cpu_percent(interval=1),
         "ram_usage_mb": psutil.virtual_memory().used / (1024 * 1024),
         "ram_total_mb": psutil.virtual_memory().total / (1024 * 1024),
         "gpu_model": gpu_name,
         "gpu_usage": gpu_load,
-        "temperature": None, # Omitimos temp por compatibilidad simple
-        "top_processes": json.dumps(get_top_processes()) # Convertimos array a string JSON para BigQuery
+        "temperature": None,
+        "top_processes": json.dumps(get_top_processes())
     }
     
     # Intento extra para sacar el modelo de CPU en Linux
